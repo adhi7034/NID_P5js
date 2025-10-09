@@ -2,13 +2,13 @@ let size = 30;
 let choice;
 
 function setup() {
-  createCanvas(800, 800, WEBGL);
+  createCanvas(800, 800, WEBGL);  
   frameRate(10);
   noStroke();
 }
 
 function draw() {
-  background(5);
+  background(250);
 
   let rotY = map(mouseX, 0, width, -PI / 4, PI / 4);
   let rotX = map(mouseY, 0, height, -PI / 4, PI / 4);
@@ -31,14 +31,14 @@ function draw() {
 
       if (choice < 0.5) {
         push();
-        rotateX((180 * random()) / 10);
-        rotateY((180 * random()) / 10);
+        //rotateX((180 * random()) / 10);
+       // rotateY((180 * random()) / 10);
         box(size * 0.5);
         pop();
       } else {
         push();
-        rotateX((180 * random()) / 10);
-        rotateY((180 * random()) / 10);
+       // rotateX((180 * random()) / 10);
+        //rotateY((180 * random()) / 10);
         cone(size * 0.4, size * 0.8);
         pop();
       }
