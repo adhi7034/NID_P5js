@@ -12,7 +12,7 @@ function setup() {
 }
 function preload() {
   for (let i=0; i<noImages;i++ ){
-    let name = "images2/img"+i+".png";
+    let name = "img"+i+".png";
     genImages[i]= loadImage(name);
   }
   // img0 = loadImage('images2/patterns0.png');
