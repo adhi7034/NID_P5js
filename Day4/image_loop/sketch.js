@@ -7,7 +7,7 @@ let genImages=[];
 let noImages=4;
 
 function setup() {
-  createCanvas(innerWidth, innerHeight);
+  createCanvas(800, 800);
   frameRate(4);
 }
 function preload() {
