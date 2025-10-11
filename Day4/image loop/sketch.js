@@ -1,4 +1,4 @@
-let size = 50;
+let size = 100;
 // let img1;
 // let img2;
 // let img3;
@@ -7,18 +7,18 @@ let genImages=[];
 let noImages=4;
 
 function setup() {
-  createCanvas(400, 400);
-  frameRate(1);
+  createCanvas(innerWidth, innerHeight);
+  frameRate(4);
 }
 function preload() {
   for (let i=0; i<noImages;i++ ){
-    let name = "Nimages/img"+i+".png";
+    let name = "images2/img"+i+".png";
     genImages[i]= loadImage(name);
   }
-  // img0 = loadImage('images/patterns0.png');
-  // img1 = loadImage('images/patterns1.png');
-  // img2 = loadImage('images/patterns2.png');
-  // img3 = loadImage('images/patterns3.png');
+  // img0 = loadImage('images2/patterns0.png');
+  // img1 = loadImage('images2/patterns1.png');
+  // img2 = loadImage('images2/patterns2.png');
+  // img3 = loadImage('images2/patterns3.png');
 }
 function draw() {
   background(220);
