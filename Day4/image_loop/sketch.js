@@ -1,4 +1,4 @@
-let size = 100;
+let size = 50;
 // let img1;
 // let img2;
 // let img3;
@@ -12,7 +12,7 @@ function setup() {
 }
 function preload() {
   for (let i=0; i<noImages;i++ ){
-    let name = "images2/img"+i+".png";
+    let name = "Nimages/img"+i+".png";
     genImages[i]= loadImage(name);
   }
   // img0 = loadImage('images2/patterns0.png');
