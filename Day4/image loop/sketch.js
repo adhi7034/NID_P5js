@@ -8,11 +8,11 @@ let noImages=4;
 
 function setup() {
   createCanvas(400, 400);
-  frameRate(10);
+  frameRate(1);
 }
 function preload() {
   for (let i=0; i<noImages;i++ ){
-    let name = "images/patterns"+i+".png";
+    let name = "Nimages/img"+i+".png";
     genImages[i]= loadImage(name);
   }
   // img0 = loadImage('images/patterns0.png');
