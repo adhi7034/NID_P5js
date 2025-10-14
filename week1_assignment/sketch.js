@@ -16,7 +16,7 @@ let bridge;
 
 let bgMusic;
 
-// 🌧️ Rain variables
+//  Rain variables
 let raindrops = [];
 
 function preload() {
@@ -31,10 +31,10 @@ function preload() {
   bg8 = loadImage("Images/fraud.jpeg");
   bg9 = loadImage("Images/treachery.jpeg");
 
- 
+
   spriteImage = loadImage("character/Swordsman_lvl2_Walk_with_shadow.png");
 
- 
+
   bridge = loadImage("Bridge.png");
 
 
@@ -58,13 +58,13 @@ function setup() {
   pathY = height - 100;
   y = pathY - 40;
 
- 
+
   if (!bgMusic.isPlaying()) {
     bgMusic.loop();
     bgMusic.setVolume(0.5);
   }
 
-  // 🌧️ Create initial raindrops
+  //  Create initial raindrops
   for (let i = 0; i < 300; i++) {
     raindrops.push(new Rain());
   }
@@ -73,29 +73,29 @@ function setup() {
 function draw() {
   background(0);
 
-  
+
   if (scene === 1) image(bg1, 0, 0, width, height);
-  else if (scene === 2) image(bg2, 0, 0, width, height);
-  else if (scene === 3) image(bg3, 0, 0, width, height);
-  else if (scene === 4) image(bg4, 0, 0, width, height);
-  else if (scene === 5) image(bg5, 0, 0, width, height);
-  else if (scene === 6) image(bg6, 0, 0, width, height);
-  else if (scene === 7) image(bg7, 0, 0, width, height);
-  else if (scene === 8) image(bg8, 0, 0, width, height);
-  else if (scene === 9) image(bg9, 0, 0, width, height);
+  else if (scene == 2) image(bg2, 0, 0, width, height);
+  else if (scene == 3) image(bg3, 0, 0, width, height);
+  else if (scene == 4) image(bg4, 0, 0, width, height);
+  else if (scene == 5) image(bg5, 0, 0, width, height);
+  else if (scene == 6) image(bg6, 0, 0, width, height);
+  else if (scene == 7) image(bg7, 0, 0, width, height);
+  else if (scene == 8) image(bg8, 0, 0, width, height);
+  else if (scene == 9) image(bg9, 0, 0, width, height);
 
   drawBridge();
   drawPlayer();
   updatePlayer();
   handleSceneChange();
 
- 
+
   for (let drop of raindrops) {
     drop.update();
     drop.show();
   }
 
-  
+
   fill(255);
   textSize(20);
   textAlign(CENTER, TOP);
@@ -107,8 +107,8 @@ function draw() {
 }
 
 function drawBridge() {
-  let bridgeW = 100;  
-  let bridgeH = 104; 
+  let bridgeW = 100;
+  let bridgeH = 104;
   let yPos = pathY - 35;
 
   for (let i = 0; i < width; i += bridgeW - 5) {
@@ -128,9 +128,9 @@ function drawPlayer() {
 function updatePlayer() {
   x += xdir;
 
-  if (xdir !== 0 && frameCount % 5 === 0) {
+  if (xdir !== 0 && frameCount % 5 == 0) {
     count = (count + 1) % spriteX;
-  } else if (xdir === 0) {
+  } else if (xdir == 0) {
     count = 0;
   }
 
@@ -149,11 +149,11 @@ function handleSceneChange() {
 }
 
 function keyPressed() {
-  if (keyCode === LEFT_ARROW) {
+  if (keyCode == LEFT_ARROW) {
     row = 1;
     xdir = -5;
     facingRight = false;
-  } else if (keyCode === RIGHT_ARROW) {
+  } else if (keyCode == RIGHT_ARROW) {
     row = 2;
     xdir = 5;
     facingRight = true;
@@ -170,7 +170,7 @@ function keyPressed() {
 }
 
 function keyReleased() {
-  if (keyCode === LEFT_ARROW || keyCode === RIGHT_ARROW) {
+  if (keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
     xdir = 0;
     count = 0;
   }
