@@ -1,4 +1,5 @@
-Day 1
+# Course Documentatiom
+## Day 1
 
 The objective of the day was to visually represent an emotion using a single shape and different colors. This was a simple assignment as we were getting started with p5js.
 
@@ -8,14 +9,14 @@ Then I created a gradient background to show a smooth transition of a colors ton
 Through this excercise i got to learn about positioning and coloring of shapes.
 
 
-Day 2
+## Day 2
 
 On day 2 I learned abot more functions like lerp() and mouseClicked(). We did basic excercises like changing colors of shapes as well as moving the shapes across the screen.
 
 The assignment for the day was to conver the emotion to another one. I got to transform joy to peace. Here i used the the lerpColor and lerp function to transition the position and color of the the circles. At first multiple circles were scattered around the canvas to represent joy. Over time the circles converged to the center gradually changinging color to white which depicted peace.
 
 
-Day 3
+## Day 3
 
 On day 3 I learnt aboutif else statements, for loop and some generative patterns and art. The main objective of the day was using the programming logic to create generative visuals like 10 Print.
 
@@ -24,7 +25,7 @@ On day 3 I learnt aboutif else statements, for loop and some generative patterns
 The assignment was to learn more about 10 print like structures and what we can modify with it. I used 3D shapes by swithing to the WEBGL mode and creating a pattern with cubes and cones. The background of the canvas can be controlled ie rotated using the mouse pointer.
 
 
-Day4
+## Day4
 
 Learned how to insert images using loadimage(). Leant about the preload() function also. This was used to add sprites into the canvas as well as to create a random generative pattern using images. 
 
@@ -37,6 +38,20 @@ Also learned about transformations like translate(), rotate() and scale(). It us
 The assignment was to make a flower grid using loops and transformation. This was a continuation of the activity that was did in the class.
 
 
-Day5
+## Day5
 
-on day 5 we learnt how to give dirctionall movement to the sprite using arrow keys. For thi looping was used to make the sprite animation and for the directional movement if else statement was used.
+on day 5 we learnt how to give dirctional movement to the sprite using arrow keys. For this looping was used to make the sprite animation and for the directional movement if else statement was used. 
+
+The weekly assignment was to create a 30 second experience 
+
+The topic
+Showcasing and navigating Dante's Inferno, exploring the 9 layers of hell
+
+Process
+
+The first part was planning. for planning I had to collect and see how the different layers of hell looked like 
+The images of hell was collected by generating each layer in midjourney. first i looked at how hell is described by different artists and then I gave prompts according to the visual description to midjourney. The chareacter sprite was also doenloaded from the internet.
+
+Images were stored in arrays and and condition was given such that when the player reaches the endpoint the character get moved to the start of the screen with the changing background.
+
+For the rain I used classes and created a vertically falling random blue strokes with varying length and speed.

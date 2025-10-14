@@ -1,38 +1,42 @@
-class Flower {
-  constructor(noPetal, x, y) {
-    this.noPetal = noPetal;
-    this.x = x;
-    this.y = y;
-    this.rotation = random(360);
-    this.speed = random(1, 3);
-    this.r = random(255);
-    this.g = random(255);
-    this.b = random(255);
+class Flower{
+  constructor(x,y,xSpeed,ySpeed){
+    this.x =x;
+    this.y =y;
+    this.size=50;
+    this.xSpeed=xSpeed;
+    this.ySpeed=ySpeed;
+    this.selected=false
   }
+  drawFlower(){
+    if (this.selected== true){
+      fill(random(0,255),random(0,255),random(0,255))
+    }
+    else{
+      fill("white")
+    }
+    ellipse(this.x,this.y,20,50);
+    ellipse(this.x,this.y,50,20);
+    ellipse(this.x,this.y,20);
 
-  update() {
-    
-    this.y += this.speed;
-
-    if (this.y > height + 20) {
-      this.y = -20;
-      this.x = random(width);
+  }
+  moveFlower(){
+    this.x+=this.xSpeed;
+    this.y+=this.ySpeed;
+    if(this.y>height || this.y<0){
+      this.ySpeed= -this.ySpeed*1.0001
+    }
+    if(this.x>height || this.x<0){
+      this.xSpeed= -this.xSpeed*1.001
     }
   }
-
-  display() {
-    push();
-    translate(this.x, this.y);
-    
-
-    for (let i = 0; i < this.noPetal; i++) {
-      fill(this.r, this.g, this.b, 150);
-      ellipse(20, 0, 200, 25);
-      rotate(360 / this.noPetal);
+  
+  changeColor(mX,mY){
+    let distance = dist(mX,mY,this.x,this.y)
+    if(distance < this.size/2){
+      this.selected=true
     }
-
-    fill(255);
-    ellipse(0, 0, 50);
-    pop();
+    // else{
+    //   this.selected=false
+    // }
   }
 }

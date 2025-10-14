@@ -8,7 +8,7 @@ function draw() {
   for(let i=0;i<width;i+=2){
     for(let j=0;j<height;j+=2){
       let outputNoise = noise(0.005*(i+frameCount),0.005*(j+frameCount))
-      fill(outputNoise*255)
+      fill(outputNoise*250)
       noStroke()
       rect(i,j,2,2)
     }
