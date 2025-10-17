@@ -13,13 +13,13 @@ let scene = 1;
 let bridge;
 let bgMusic;
 
-
+// Rain
 let raindrops = [];
 
-
+// Demon
 let demonSheet, demonFrames = [];
 
-
+// Rolling text
 let sceneTexts = [
   "“Noble minds dwell without torment, yet without hope — forever yearning for the light they never knew.”",
   "“The winds that tossed their hearts now toss their souls — love’s desire turned endless storm.”",
@@ -33,7 +33,7 @@ let sceneTexts = [
 ];
 let textX, scrollSpeed = 2;
 
-
+// Dialogue system
 let dialogueIndex = 0;
 let showDialogue = false;
 
@@ -74,7 +74,7 @@ function setup() {
   imageMode(CENTER);
   angleMode(DEGREES);
 
- 
+  // Character spritsheet
   let w = spriteImage.width / spriteX;
   let h = spriteImage.height / spriteY;
   for (let i = 0; i < spriteY; i++) {
@@ -84,7 +84,7 @@ function setup() {
     }
   }
 
- 
+  // Demon frames
   let dw = demonSheet.width / 4;
   for (let i = 0; i < 4; i++) {
     demonFrames.push(demonSheet.get(i * dw, 0, dw, demonSheet.height));
@@ -128,19 +128,19 @@ function draw() {
   updatePlayer();
   handleSceneChange();
 
-
+ 
   if (scene == 10) {
     drawDemon();
     if (showDialogue) drawDialogue();
   }
 
-  
+ 
   for (let drop of raindrops) {
     drop.update();
     drop.show();
   }
 
-
+  
   if (scene <= 9) {
     drawRollingText();
   }
@@ -245,17 +245,17 @@ function drawDialogue() {
   let boxWidth = 420;
   let boxHeight = 90;
 
-  let boxX = dlg.speaker === "demon" ? demonX - 100 : pathY - 140;
+  let boxX = dlg.speaker === "demon" ? demonX - 100 : x;
   let boxY = dlg.speaker === "demon" ? demonY - 130 : pathY - 140;
 
- 
+
   fill(20, 20, 20, 230);
   stroke(255);
   strokeWeight(2);
   rectMode(CENTER);
-  rect(boxX, boxY, boxWidth, boxHeight);
+  rect(boxX, boxY, boxWidth, boxHeight, 8);
 
-
+ 
   noStroke();
   fill(255);
   textSize(16);
@@ -280,7 +280,7 @@ function keyPressed() {
     else bgMusic.loop();
   }
 
- 
+  // Dialogue progression
   if (scene == 10 && (key === 'f' || key === 'F')) {
     showDialogue = true;
     dialogueIndex++;
