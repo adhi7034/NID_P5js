@@ -124,9 +124,13 @@ function draw() {
   if (scene == 1) {
     fill(255, 255, 0);
     noStroke();
+    
     textSize(14);
     textAlign(LEFT, CENTER);
     text("To Go Right Press right arrow ->", 50, 100);
+    textSize(50);
+    textAlign(CENTER,CENTER);
+    text("DANTE'S INFERNO", 300, 150);
   }
 
   for (let drop of raindrops) {
