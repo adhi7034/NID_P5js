@@ -1,7 +1,6 @@
 let spriteImage, sprites = [];
 let spriteX = 6, spriteY = 4;
-let count = 0;
-let row = 0;
+let count = 0, row = 0;
 let x = 50, y;
 let xdir = 0;
 let pathY;
@@ -13,13 +12,10 @@ let scene = 1;
 let bridge;
 let bgMusic;
 
-// Rain
 let raindrops = [];
 
-// Demon
 let demonSheet, demonFrames = [];
 
-// Rolling text
 let sceneTexts = [
   "“Noble minds dwell without torment, yet without hope — forever yearning for the light they never knew.”",
   "“The winds that tossed their hearts now toss their souls — love’s desire turned endless storm.”",
@@ -33,10 +29,8 @@ let sceneTexts = [
 ];
 let textX, scrollSpeed = 2;
 
-// Dialogue system
 let dialogueIndex = 0;
 let showDialogue = false;
-
 
 let dialogues = [
   { speaker: "demon", text: "You’ve come a long way, mortal... farther than most ever dare." },
@@ -61,11 +55,9 @@ function preload() {
   bg7 = loadImage("Images/violence.jpeg");
   bg8 = loadImage("Images/fraud.jpeg");
   bg9 = loadImage("Images/treachery.jpeg");
-
   spriteImage = loadImage("character/Swordsman_lvl2_Walk_with_shadow.png");
   bridge = loadImage("Bridge.png");
   demonSheet = loadImage("devil/IDLE.png");
-
   bgMusic = loadSound("audio/adventure.mp3");
 }
 
@@ -74,7 +66,6 @@ function setup() {
   imageMode(CENTER);
   angleMode(DEGREES);
 
-  // Character spritsheet
   let w = spriteImage.width / spriteX;
   let h = spriteImage.height / spriteY;
   for (let i = 0; i < spriteY; i++) {
@@ -84,7 +75,6 @@ function setup() {
     }
   }
 
-  // Demon frames
   let dw = demonSheet.width / 4;
   for (let i = 0; i < 4; i++) {
     demonFrames.push(demonSheet.get(i * dw, 0, dw, demonSheet.height));
@@ -98,18 +88,13 @@ function setup() {
     bgMusic.setVolume(0.5);
   }
 
-  // Raindrops
-  for (let i = 0; i < 300; i++) {
-    raindrops.push(new Rain());
-  }
+  for (let i = 0; i < 300; i++) raindrops.push(new Rain());
 
   textX = width / 2;
 }
 
 function draw() {
   imageMode(CORNER);
-
-  // Backgrounds
   if (scene === 1) image(bg1, 0, 0, width, height);
   else if (scene == 2) image(bg2, 0, 0, width, height);
   else if (scene == 3) image(bg3, 0, 0, width, height);
@@ -119,181 +104,116 @@ function draw() {
   else if (scene == 7) image(bg7, 0, 0, width, height);
   else if (scene == 8) image(bg8, 0, 0, width, height);
   else if (scene == 9) image(bg9, 0, 0, width, height);
-  else if (scene == 10) background(0);
+  else background(0);
 
   drawBridge();
-
   imageMode(CENTER);
   drawPlayer();
   updatePlayer();
   handleSceneChange();
 
- 
   if (scene == 10) {
     drawDemon();
     if (showDialogue) drawDialogue();
+    fill(255, 255, 0);
+    textSize(18);
+    textAlign(CENTER, CENTER);
+    text("Press F to Talk", width - 100, pathY - 160);
   }
 
- 
+  if (scene == 1) {
+    fill(255, 255, 0);
+    noStroke();
+    textSize(14);
+    textAlign(LEFT, CENTER);
+    text("To Go Right Press right arrow ->", 50, 100);
+  }
+
   for (let drop of raindrops) {
     drop.update();
     drop.show();
   }
 
-  
-  if (scene <= 9) {
-    drawRollingText();
-  }
+  if (scene <= 9) drawRollingText();
 }
-
-
-function drawBridge() {
-  let bridgeW = 100;
-  let bridgeH = 104;
-  let yPos = pathY - 35;
-  for (let i = 0; i < width; i += bridgeW - 5) {
-    image(bridge, i, yPos, bridgeW, bridgeH);
-  }
-}
-
 
 function drawPlayer() {
   push();
   translate(x, y);
   imageMode(CENTER);
   if (!facingRight) scale(-1, 1);
-  image(sprites[row][count], 0, 30, 120, 120);
+  if (sprites[row] && sprites[row][count]) image(sprites[row][count], 0, 30, 120, 120);
   pop();
 }
 
 function updatePlayer() {
   x += xdir;
-  if (xdir !== 0 && frameCount % 5 == 0) {
-    count = (count + 1) % spriteX;
-  } else if (xdir == 0) {
-    count = 0;
-  }
   x = constrain(x, 0, width);
+  if (xdir !== 0 && frameCount % 5 == 0) count = (count + 1) % spriteX;
+  else if (xdir == 0) count = 0;
 }
 
 function handleSceneChange() {
-  if (x > width - 20 && scene < 10) {
-    scene++;
-    x = 50;
-  }
-  if (x < 20 && scene > 1) {
-    scene--;
-    x = width - 50;
-  }
+  if (x > width - 20 && scene < 10) { scene++; x = 50; }
+  if (x < 20 && scene > 1) { scene--; x = width - 50; }
 }
 
+function drawBridge() {
+  let bridgeW = 100, bridgeH = 104;
+  let yPos = pathY - 35;
+  for (let i = 0; i < width; i += bridgeW - 5) {
+    image(bridge, i, yPos, bridgeW, bridgeH);
+  }
+}
 
 function drawDemon() {
   let demonFrame = demonFrames[floor(frameCount / 8) % 4];
-  let demonX = width - 100;
-  let demonY = pathY - 80;
+  let demonX = width - 100, demonY = pathY - 80;
   image(demonFrame, demonX, demonY, 150, 150);
 }
 
-
 class Rain {
   constructor() {
-    this.x = random(width);
-    this.y = random(-height, 0);
-    this.len = random(10, 20);
-    this.speed = random(4, 10);
-    this.thick = random(1, 2);
+    this.x = random(width); this.y = random(-height, 0);
+    this.len = random(10, 20); this.speed = random(4, 10);
   }
-  update() {
-    this.y += this.speed;
-    if (this.y > height) {
-      this.y = random(-100, 0);
-      this.x = random(width);
-      this.speed = random(4, 10);
-    }
-  }
-  show() {
-    stroke(173, 216, 230, 200);
-    strokeWeight(this.thick);
-    line(this.x, this.y, this.x, this.y + this.len);
-  }
+  update() { this.y += this.speed; if (this.y > height) { this.y = random(-100,0); this.x = random(width); this.speed = random(4,10); } }
+  show() { stroke(173,216,230,200); strokeWeight(1.5); line(this.x,this.y,this.x,this.y+this.len); }
 }
-
 
 function drawRollingText() {
-  fill(255, 230);
-  textSize(20);
-  textAlign(CENTER, CENTER);
-
-  let msg = sceneTexts[scene - 1];
+  fill(255,230); textSize(20); textAlign(CENTER,CENTER);
+  let msg = sceneTexts[scene-1];
   let msgWidth = textWidth(msg);
-
-  text(msg, textX, height / 2);
+  text(msg, textX, height/2);
   textX -= scrollSpeed;
-
-  if (textX < -msgWidth / 2) {
-    textX = width + msgWidth / 2;
-  }
+  if (textX < -msgWidth/2) textX = width + msgWidth/2;
 }
-
 
 function drawDialogue() {
   let dlg = dialogues[dialogueIndex];
-  let demonX = width - 100;
-  let demonY = pathY - 80;
-
-  let boxWidth = 420;
-  let boxHeight = 90;
-
-  let boxX = dlg.speaker === "demon" ? demonX - 100 : x;
-  let boxY = dlg.speaker === "demon" ? demonY - 130 : pathY - 140;
-
-
-  fill(20, 20, 20, 230);
-  stroke(255);
-  strokeWeight(2);
-  rectMode(CENTER);
-  rect(boxX, boxY, boxWidth, boxHeight, 8);
-
- 
-  noStroke();
-  fill(255);
-  textSize(16);
-  textAlign(CENTER, CENTER);
+  if (!dlg) return;
+  let demonX = width - 100, demonY = pathY - 80;
+  let boxWidth = 420, boxHeight = 90;
+  let boxX = dlg.speaker === "demon" ? demonX - 100 : width/2;
+  let boxY = dlg.speaker === "demon" ? demonY - 130 : height - 100;
+  fill(20,20,20,230); stroke(255); strokeWeight(2);
+  rectMode(CENTER); rect(boxX, boxY, boxWidth, boxHeight, 8);
+  noStroke(); fill(255); textSize(16);
+  textAlign(CENTER,CENTER);
   text(dlg.text, boxX, boxY, boxWidth - 20, boxHeight - 10);
 }
 
-
 function keyPressed() {
-  if (keyCode == LEFT_ARROW) {
-    row = 1;
-    xdir = -5;
-    facingRight = false;
-  } else if (keyCode == RIGHT_ARROW) {
-    row = 2;
-    xdir = 5;
-    facingRight = true;
-  }
-
-  if (key === 'm' || key === 'M') {
-    if (bgMusic.isPlaying()) bgMusic.pause();
-    else bgMusic.loop();
-  }
-
-  // Dialogue progression
+  if (keyCode == LEFT_ARROW) { row = 1; xdir = -5; facingRight = false; }
+  if (keyCode == RIGHT_ARROW) { row = 2; xdir = 5; facingRight = true; }
+  if (key === 'm' || key === 'M') { if(bgMusic.isPlaying()) bgMusic.pause(); else bgMusic.loop(); }
   if (scene == 10 && (key === 'f' || key === 'F')) {
-    showDialogue = true;
-    dialogueIndex++;
-    if (dialogueIndex >= dialogues.length) {
-      dialogueIndex = 0;
-      showDialogue = false;
-    }
+    showDialogue = true; dialogueIndex++;
+    if (dialogueIndex >= dialogues.length) { dialogueIndex = 0; showDialogue = false; }
   }
 }
 
 function keyReleased() {
-  if (keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
-    xdir = 0;
-    count = 0;
-  }
+  if (keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) { xdir = 0; count = 0; }
 }
