@@ -11,7 +11,7 @@ class SceneChange {
       image(this.bgImages[this.scene], 0, 0, width, height);
     else background(0);
 
-    // Draw bridge
+   
     let bridgeW = 100, bridgeH = 104;
     let yPos = this.pathY - 35;
     for (let i = 0; i < width; i += bridgeW - 5) {
