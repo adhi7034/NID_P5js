@@ -1,11 +1,21 @@
+class RainSystem {
+  constructor(count) {
+    this.drops = [];
+    for (let i = 0; i < count; i++) this.drops.push(new Rain());
+  }
+
+  update() { this.drops.forEach(d => d.update()); }
+  show() { this.drops.forEach(d => d.show()); }
+}
+
 class Rain {
   constructor() {
     this.x = random(width);
     this.y = random(-height, 0);
     this.len = random(10, 20);
     this.speed = random(4, 10);
-    this.thick = random(1, 2);
   }
+
   update() {
     this.y += this.speed;
     if (this.y > height) {
@@ -14,9 +24,10 @@ class Rain {
       this.speed = random(4, 10);
     }
   }
+
   show() {
     stroke(173, 216, 230, 200);
-    strokeWeight(this.thick);
+    strokeWeight(1.5);
     line(this.x, this.y, this.x, this.y + this.len);
   }
 }

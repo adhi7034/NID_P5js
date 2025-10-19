@@ -32,6 +32,10 @@ let textX, scrollSpeed = 2;
 let dialogueIndex = 0;
 let showDialogue = false;
 
+// NEW variables for final inferno screen
+let showInfernoScreen = false;
+let infernoTimer = 0;
+
 let dialogues = [
   { speaker: "demon", text: "You’ve come a long way, mortal... farther than most ever dare." },
   { speaker: "player", text: "I only seek to redeem my soul. Tell me—what is this place?" },
@@ -94,6 +98,21 @@ function setup() {
 }
 
 function draw() {
+  if (showInfernoScreen) {
+    // Black screen with text
+    background(0);
+    fill(255,255,0);
+    textSize(40);
+    textAlign(CENTER, CENTER);
+    text("Welcome to Inferno", width / 2, height / 2);
+
+    infernoTimer++;
+    if (infernoTimer > 200) {
+      showInfernoScreen = false;
+    }
+    return; 
+  }
+
   imageMode(CORNER);
   if (scene === 1) image(bg1, 0, 0, width, height);
   else if (scene == 2) image(bg2, 0, 0, width, height);
@@ -124,12 +143,11 @@ function draw() {
   if (scene == 1) {
     fill(255, 255, 0);
     noStroke();
-    
     textSize(14);
     textAlign(LEFT, CENTER);
     text("To Go Right Press right arrow ->", 50, 100);
     textSize(50);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER, CENTER);
     text("DANTE'S INFERNO", 300, 150);
   }
 
@@ -178,20 +196,35 @@ function drawDemon() {
 
 class Rain {
   constructor() {
-    this.x = random(width); this.y = random(-height, 0);
-    this.len = random(10, 20); this.speed = random(4, 10);
+    this.x = random(width);
+    this.y = random(-height, 0);
+    this.len = random(10, 20);
+    this.speed = random(4, 10);
   }
-  update() { this.y += this.speed; if (this.y > height) { this.y = random(-100,0); this.x = random(width); this.speed = random(4,10); } }
-  show() { stroke(173,216,230,200); strokeWeight(1.5); line(this.x,this.y,this.x,this.y+this.len); }
+  update() {
+    this.y += this.speed;
+    if (this.y > height) {
+      this.y = random(-100, 0);
+      this.x = random(width);
+      this.speed = random(4, 10);
+    }
+  }
+  show() {
+    stroke(173, 216, 230, 200);
+    strokeWeight(1.5);
+    line(this.x, this.y, this.x, this.y + this.len);
+  }
 }
 
 function drawRollingText() {
-  fill(255,230); textSize(20); textAlign(CENTER,CENTER);
-  let msg = sceneTexts[scene-1];
+  fill(255, 230);
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  let msg = sceneTexts[scene - 1];
   let msgWidth = textWidth(msg);
-  text(msg, textX, height/2);
+  text(msg, textX, height / 2);
   textX -= scrollSpeed;
-  if (textX < -msgWidth/2) textX = width + msgWidth/2;
+  if (textX < -msgWidth / 2) textX = width + msgWidth / 2;
 }
 
 function drawDialogue() {
@@ -199,25 +232,50 @@ function drawDialogue() {
   if (!dlg) return;
   let demonX = width - 100, demonY = pathY - 80;
   let boxWidth = 420, boxHeight = 90;
-  let boxX = dlg.speaker === "demon" ? demonX - 100 : width/2;
+  let boxX = dlg.speaker === "demon" ? demonX - 100 : width / 2;
   let boxY = dlg.speaker === "demon" ? demonY - 130 : height - 100;
-  fill(20,20,20,230); stroke(255); strokeWeight(2);
-  rectMode(CENTER); rect(boxX, boxY, boxWidth, boxHeight, 8);
-  noStroke(); fill(255); textSize(16);
-  textAlign(CENTER,CENTER);
+  fill(20, 20, 20, 230);
+  stroke(255);
+  strokeWeight(2);
+  rectMode(CENTER);
+  rect(boxX, boxY, boxWidth, boxHeight, 8);
+  noStroke();
+  fill(255);
+  textSize(16);
+  textAlign(CENTER, CENTER);
   text(dlg.text, boxX, boxY, boxWidth - 20, boxHeight - 10);
 }
 
 function keyPressed() {
-  if (keyCode == LEFT_ARROW) { row = 1; xdir = -5; facingRight = false; }
-  if (keyCode == RIGHT_ARROW) { row = 2; xdir = 5; facingRight = true; }
-  if (key === 'm' || key === 'M') { if(bgMusic.isPlaying()) bgMusic.pause(); else bgMusic.loop(); }
+  if (keyCode == LEFT_ARROW) {
+    row = 1;
+    xdir = -5;
+    facingRight = false;
+  }
+  if (keyCode == RIGHT_ARROW) {
+    row = 2;
+    xdir = 5;
+    facingRight = true;
+  }
+  if (key === 'm' || key === 'M') {
+    if (bgMusic.isPlaying()) bgMusic.pause();
+    else bgMusic.loop();
+  }
   if (scene == 10 && (key === 'f' || key === 'F')) {
-    showDialogue = true; dialogueIndex++;
-    if (dialogueIndex >= dialogues.length) { dialogueIndex = 0; showDialogue = false; }
+    showDialogue = true;
+    dialogueIndex++;
+    if (dialogueIndex >= dialogues.length) {
+      dialogueIndex = 0;
+      showDialogue = false;
+      showInfernoScreen = true; // 
+      infernoTimer = 0;
+    }
   }
 }
 
 function keyReleased() {
-  if (keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) { xdir = 0; count = 0; }
+  if (keyCode == LEFT_ARROW || keyCode == RIGHT_ARROW) {
+    xdir = 0;
+    count = 0;
+  }
 }
