@@ -30,7 +30,7 @@ let dialogues = [
   { speaker: "player", text: "I will. If Hell is the price of my sins, then I’ll pay it myself." }
 ];
 
-let textX, scrollSpeed = 2;
+let textX, scrollSpeed = 3;
 let dialogueIndex = 0;
 let showDialogue = false;
 let showInfernoScreen = false;
@@ -38,9 +38,9 @@ let infernoTimer = 0;
 
 function preload() {
   // Load backgrounds
-  let bgNames = ["limbo","lust","gluttony","greed","wrath","heresy","violence","fraud","treachery"];
+  let bgNames = ["limbo", "lust", "gluttony", "greed", "wrath", "heresy", "violence", "fraud", "treachery"];
   for (let i = 0; i < bgNames.length; i++) {
-    bgImages[i+1] = loadImage(`Images/${bgNames[i]}.jpeg`);
+    bgImages[i + 1] = loadImage(`Images/${bgNames[i]}.jpeg`);
   }
 
   bridgeImg = loadImage("Bridge.png");
@@ -54,7 +54,7 @@ function setup() {
   imageMode(CENTER);
   angleMode(DEGREES);
 
-  // Initialize classes
+
   player = new Player(playerSheetImg, 50, height - 140, 6, 4);
   sceneChange = new SceneChange(bgImages, bridgeImg);
   demon = new Demon(demonSheetImg, width - 100, height - 140);
@@ -80,7 +80,7 @@ function draw() {
     return;
   }
 
-  // Draw scene
+
   imageMode(CORNER);
   sceneChange.drawScene();
 
@@ -94,7 +94,7 @@ function draw() {
   player.checkSceneChange(sceneChange);
   player.draw();
 
-  // Scene-specific
+
   if (sceneChange.scene <= 9) drawRollingText();
   if (sceneChange.scene == 10) {
     demon.draw();
@@ -152,18 +152,18 @@ function drawTitleText() {
 function keyPressed() {
   if (keyCode == LEFT_ARROW) player.moveLeft();
   if (keyCode == RIGHT_ARROW) player.moveRight();
-  if (key === 'm' || key === 'M') {
+  if (key === 'm' ) {
     if (bgMusic.isPlaying()) bgMusic.pause();
     else bgMusic.loop();
   }
-  if (sceneChange.scene == 10 && (key === 'f' || key === 'F')) {
+  if (sceneChange.scene == 10 && (key === 'f' )) {
     showDialogue = true;
     dialogueIndex++;
     if (dialogueIndex >= dialogues.length) {
       dialogueIndex = 0;
       showDialogue = false;
       showInfernoScreen = true;
-      infernoTimer = 0;
+      
     }
   }
 }

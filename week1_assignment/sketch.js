@@ -32,7 +32,7 @@ let textX, scrollSpeed = 2;
 let dialogueIndex = 0;
 let showDialogue = false;
 
-// NEW variables for final inferno screen
+
 let showInfernoScreen = false;
 let infernoTimer = 0;
 
