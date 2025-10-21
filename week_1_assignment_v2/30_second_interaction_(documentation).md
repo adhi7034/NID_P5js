@@ -1,1 +1,1 @@
-![bg](images/fraud.jpeg)
+![bg](Images/fraud.jpeg)
