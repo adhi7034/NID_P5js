@@ -14,14 +14,14 @@ function setup() {
   createCanvas(800, 400)
   gball = new ball(width / 2, height / 2, 5, 5)
 
-  let pWidth = 10, pHeight = 40;
+  let pWidth = 10, pHeight = 80;
   paddle1 = new Paddle(0, height / 2 - pHeight / 2, pWidth, pHeight, 5);
   paddle2 = new Paddle(width - pWidth, height / 2 - pHeight / 2, pWidth, pHeight, 5);
 
 }
 
 function draw() {
-  background(220);
+  background(220,220,220,50);
 
   //BALL BEHAVIOUR
 

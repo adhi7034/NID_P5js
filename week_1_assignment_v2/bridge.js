@@ -1,6 +1,6 @@
 class Bridge {
   constructor(img) {
-    this.img = img; // preloaded
+    this.img = img; 
   }
 
   draw(pathY) {
