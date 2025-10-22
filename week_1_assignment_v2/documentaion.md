@@ -42,10 +42,16 @@ Also learned about transformations like translate(), rotate() and scale(). It us
 
 The assignment was to make a flower grid using loops and transformation. This was a continuation of the activity that was did in the class.
 
+https://adhi7034.github.io/NID_P5js/Day4/image_loop
+
 
 ## Day5
 
 on day 5 we learnt how to give dirctional movement to the sprite using arrow keys. For this looping was used to make the sprite animation and for the directional movement if else statement was used. 
+
+https://adhi7034.github.io/NID_P5js/Day5/2d_sprite
+
+## Weekly assignment 
 
 The weekly assignment was to create a 30 second experience 
 
@@ -64,3 +70,14 @@ For the rain I used classes and created a vertically falling random blue strokes
 Add narration: The descryption of each of dante's Inferno
 End game state ie a black screen which sums up the thought of Dante on layers of hell.
 Character jump animation and reverse walking animation
+
+## Day6
+
+### Learning
+
+On day 6 learnt about classes and how classes can make the code more structured and neat. Classes introduces a new modularity and it is easy to manage. A class is like a blueprint That can be used it again and again in  a code.
+
+For example while writing a code in which flowers can be spawned randomly while clicking, we can create a flower class and used it in the sketch.js. So that the flower can be repeated again and again.
+
+https://adhi7034.github.io/NID_P5js/Day6/Day6/flowers_using_class
+

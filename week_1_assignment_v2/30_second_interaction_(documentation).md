@@ -1,3 +1,4 @@
+# DANTE'S INFERNO
 ![bg](homescreen/home_screen.png)
 ## Why I Chose This Topic
 I chose Dante’s Inferno because it talks about human mistakes, guilt, and the search for redemption. It has deep emotions and strong visuals that can be turned into interesting game scenes. I wanted to show a journey of discovery and the artists intent on the layers of hell. In this each background shows a part of the hell portrayed by dante. This experience is a mix of AI, coding, storytelling and visual design.
