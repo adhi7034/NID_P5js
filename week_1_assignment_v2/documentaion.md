@@ -79,5 +79,5 @@ On day 6 learnt about classes and how classes can make the code more structured 
 
 For example while writing a code in which flowers can be spawned randomly while clicking, we can create a flower class and used it in the sketch.js. So that the flower can be repeated again and again.
 
-https://adhi7034.github.io/NID_P5js/Day6/Day6/flowers_using_class
+https://adhi7034.github.io/NID_P5js/Day6/flowers_using_class
 
