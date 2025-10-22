@@ -10,11 +10,11 @@ All the backgrounds were made using Midjourney, an AI image generator. A lot of 
 ![bg](devil/IDLE.png)
 ## Technical Details
 The project was created in p5.js, combining several features:
-Scenes: Each of the nine circles is one scene with its own background and quote.
-Player Movement: The character can walk left and right with sprite animation.
-Rain Effect: A small script creates falling rain to add mood.
-Dialogue: In the last scene, the player can talk to the demon.
-Music Control: The ‘M’ key can pause or play background music.
++ Scenes: Each of the nine circles is one scene with its own background and quote.
++ Player Movement: The character can walk left and right with sprite animation.
++ Rain Effect: A small script creates falling rain to add mood.
++ Dialogue: In the last scene, the player can talk to the demon.
++ Music Control: The ‘M’ key can pause or play background music.
 The game moves from one scene to another when the player reaches the edge of the screen. Quotes scroll across the screen, adding a storytelling layer to each level.
 ![bg](code/code_1.png)
 
@@ -24,3 +24,5 @@ The game moves from one scene to another when the player reaches the edge of the
 
 ## Conclusion
 This project helped me connect literature, art, and code.By using Midjourney for visuals and p5.js for interactivity, I turned an old poem into a new kind of experience.It taught me that design is about creating experiences — where visuals, sound, and movement come together to tell a story.
+
+Visual experience link: https://adhi7034.github.io/NID_P5js/week_1_assignment_v2
