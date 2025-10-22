@@ -7,6 +7,7 @@ All the backgrounds were made using Midjourney, an AI image generator. A lot of 
 ![bg](Images/limbo.jpeg)
 ![bg](Images/treachery.jpeg)
 ![bg](character/Swordsman_lvl2_Walk_with_shadow.png)
+![bg](devil/IDLE.png)
 Technical Details
 The project was created in p5.js, combining several features:
 Scenes: Each of the nine circles is one scene with its own background and quote.
