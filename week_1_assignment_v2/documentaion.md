@@ -8,6 +8,7 @@ Then I created a gradient background to show a smooth transition of a colors ton
 
 Through this excercise i got to learn about positioning and coloring of shapes.
 
+https://adhi7034.github.io/NID_P5js/joy_circles_
 
 ## Day 2
 
@@ -15,6 +16,7 @@ On day 2 I learned abot more functions like lerp() and mouseClicked(). We did ba
 
 The assignment for the day was to conver the emotion to another one. I got to transform joy to peace. Here i used the the lerpColor and lerp function to transition the position and color of the the circles. At first multiple circles were scattered around the canvas to represent joy. Over time the circles converged to the center gradually changinging color to white which depicted peace.
 
+https://adhi7034.github.io/NID_P5js/emoji_animation
 
 ## Day 3
 
@@ -24,6 +26,9 @@ On day 3 I learnt aboutif else statements, for loop and some generative patterns
 
 The assignment was to learn more about 10 print like structures and what we can modify with it. I used 3D shapes by swithing to the WEBGL mode and creating a pattern with cubes and cones. The background of the canvas can be controlled ie rotated using the mouse pointer.
 
+https://adhi7034.github.io/NID_P5js/Day3/10%20print%20for%20loop
+
+https://adhi7034.github.io/NID_P5js/Day3/if%20else
 
 ## Day4
 
