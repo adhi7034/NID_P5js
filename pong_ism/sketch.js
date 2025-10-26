@@ -15,7 +15,7 @@ function preload(){
 }
 
 function setup() {
-    createCanvas(800, 400);
+    createCanvas(1600, 800);
     noStroke(); 
     
     gball = new ball(width / 2, height / 2, 5, 5);

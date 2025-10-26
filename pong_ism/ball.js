@@ -11,7 +11,7 @@ class ball {
     show() {
         // Ghostly visual: semi-transparent purple
         if (this.isGhost) {
-            fill(255, 0, 255, 100); 
+            fill(255, 0, 255, 50);
         } else {
             fill(255); // Solid white
         }
@@ -29,13 +29,13 @@ class ball {
 
         if (this.y < topBound) {
             if (this.isGhost) {
-                this.y = bottomBound; // Wrap to the bottom
+                this.y = bottomBound * random(0.5, 1); // Wrap to the bottom
             } else {
                 this.ySpeed = -this.ySpeed; // Normal bounce
             }
         } else if (this.y > bottomBound) {
             if (this.isGhost) {
-                this.y = topBound; // Wrap to the top
+                this.y = topBound * random(0.5, 1); // Wrap to the top
             } else {
                 this.ySpeed = -this.ySpeed; // Normal bounce
             }
@@ -59,18 +59,17 @@ class ball {
     }
 
     checkCollisionPaddle(paddle) {
-        // Simple AABB collision check
+
         if (this.x < paddle.x + paddle.width &&
             this.x > paddle.x &&
             this.y < paddle.y + paddle.height &&
-            this.y > paddle.y) 
-        {
-            // Reverse direction on collision
-            this.xSpeed = -this.xSpeed; 
+            this.y > paddle.y) {
 
-            // 👻 20% chance to toggle the Ghost Ball state
-            if (random() < 0.2) { 
-                this.isGhost = !this.isGhost; 
+            this.xSpeed = -this.xSpeed;
+
+
+            if (random() < 0.5) {
+                this.isGhost = !this.isGhost;
                 console.log("Ghost Ball Toggled: " + this.isGhost);
             }
         }
