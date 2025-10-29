@@ -1,4 +1,3 @@
-// === GLOBAL VARIABLES ===
 let gball;
 let extraBalls = [];
 let paddle1, paddle2;
@@ -6,7 +5,7 @@ let player1 = 0;
 let player2 = 0;
 let gameState = "start";
 let spawnTimer = 0;
-let spawnInterval = 5000; // 5 seconds
+let spawnInterval = 5000; 
 
 function setup() {
   createCanvas(1300, 650);
@@ -41,13 +40,13 @@ function keyPressed() {
   }
 }
 
-// === MAIN GAME LOOP ===
+
 function playGame() {
   setGradient(0, 0, width, height, color(15, 10, 30), color(0, 0, 0), "Y");
   fill(0, 40);
   rect(0, 0, width, height);
 
-  // center line
+ 
   stroke(255, 100);
   strokeWeight(2);
   for (let i = 0; i < height; i += 20) {
@@ -55,24 +54,23 @@ function playGame() {
   }
   noStroke();
 
-  // Paddle input
+  
   paddle1.handleInput();
   paddle2.handleInput();
 
-  // Ball mechanics
   gball.move();
   gball.checkCollisionWall();
   gball.checkCollisionPaddle(paddle1);
   gball.checkCollisionPaddle(paddle2);
   gball.show();
 
-  // Spawn illusion balls every 5 seconds
+
   if (millis() - spawnTimer > spawnInterval) {
     spawnExtraBalls();
     spawnTimer = millis();
   }
 
-  // Update and draw fake balls
+ 
   for (let i = extraBalls.length - 1; i >= 0; i--) {
     let b = extraBalls[i];
     b.move();
@@ -81,7 +79,6 @@ function playGame() {
     if (b.life <= 0) extraBalls.splice(i, 1);
   }
 
-  // Scoring
   let point = gball.checkWinner();
   if (point !== 0) {
     if (point === 1) player1++;
@@ -90,18 +87,17 @@ function playGame() {
     extraBalls = [];
   }
 
-  // Draw paddles and score
   paddle1.show();
   paddle2.show();
   drawScore();
 
-  // End game condition
+  
   if (player1 >= 15 || player2 >= 15) {
     gameState = "end";
   }
 }
 
-// === PADDLE CLASS ===
+
 class Paddle {
   constructor(x, y, width, height, speed, upKey, downKey) {
     this.x = x;
@@ -137,7 +133,7 @@ class Paddle {
   }
 }
 
-// === BALL CLASS ===
+
 class Ball {
   constructor(x, y, xSpeed, ySpeed, isMain = false) {
     this.x = x;
@@ -149,7 +145,7 @@ class Ball {
     this.isGhost = false;
     this.isInvisible = false;
     this.isMain = isMain;
-    this.life = 500; // for fake balls
+    this.life = 500; 
 
     if (isMain) {
       this.startDisappearTimer();
@@ -194,20 +190,20 @@ class Ball {
 
   checkCollisionWall() {
     if (this.isGhost && this.isMain) {
-      // Ghost passes through top/bottom walls (wraps around)
+      
       if (this.y < 0) this.y = height;
       if (this.y > height) this.y = 0;
       return;
     }
 
-    // Normal bouncing
+   
     if (this.y - this.size / 2 < 0 || this.y + this.size / 2 > height) {
       this.ySpeed *= -1;
     }
   }
 
   checkCollisionPaddle(paddle) {
-    // ✅ Ghost still hits paddles now
+   
     if (!this.isMain) return; 
 
     if (
@@ -241,7 +237,6 @@ class Ball {
   }
 }
 
-// === EXTRA BALL SPAWNING ===
 function spawnExtraBalls() {
   for (let i = 0; i < int(random(3, 7)); i++) {
     let xb = random(width * 0.3, width * 0.7);
@@ -252,7 +247,7 @@ function spawnExtraBalls() {
   }
 }
 
-// === UI ELEMENTS ===
+
 function drawScore() {
   fill(255);
   textAlign(CENTER, CENTER);
