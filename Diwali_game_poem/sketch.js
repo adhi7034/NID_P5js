@@ -2,7 +2,7 @@ let rockets = [];
 let gravity;
 let bgMusic;
 
-// === SEPARATE IMAGE ARRAYS ===
+
 let sparkSet1 = [];
 let sparkSet2 = [];
 let sparkSet3 = [];
@@ -33,7 +33,7 @@ function preload() {
   soundFormats('mp3', 'ogg');
   bgMusic = loadSound("sound/nostalgia-a-sweet-amp-memorable-loopable-piano-song-by-gtg-319605.mp3");
 
-  // === Firework texture sets ===
+ 
   sparkSet1 = [loadImage("image/sp1a.jpg"),
   loadImage("image/sp1b.jpg"),
   loadImage("image/sp1c.jpg"),
@@ -76,13 +76,13 @@ function setup() {
   // Create combined set for the final firework
   combinedSet = [].concat(...allSparkSets);
 
-  // 🎵 Music
+
   if (bgMusic && !bgMusic.isPlaying()) {
     bgMusic.loop();
     bgMusic.setVolume(0.4);
   }
 
-  // ✨ Create stars (depth-aware)
+  
   for (let i = 0; i < 300; i++) {
     stars.push({
       x: random(-width * 3, width * 3),
@@ -98,7 +98,7 @@ function setup() {
 function draw() {
   background(0);
 
-  // === Stars behind everything ===
+
   push();
   noStroke();
   for (let s of stars) {
@@ -111,7 +111,7 @@ function draw() {
   }
   pop();
 
-  // === Gradient background plane ===
+ 
   resetMatrix();
   camera();
   noLights();
@@ -122,7 +122,7 @@ function draw() {
   plane(width * 4, height * 4);
   pop();
 
-  // === Fireworks ===
+ 
   orbitControl();
   ambientLight(80);
   directionalLight(255, 255, 255, -0.4, -1, -0.3);
@@ -135,7 +135,7 @@ function draw() {
   }
   blendMode(BLEND);
 
-  // === Poem layer ===
+ 
   drawPoemLayer();
   resetMatrix();
   camera();
@@ -146,7 +146,7 @@ function draw() {
   pop();
 }
 
-// === Gradient BG ===
+
 function drawGradientBG() {
   bgLayer.clear();
   bgLayer.colorMode(HSB, 360, 100, 100, 255);
@@ -163,7 +163,7 @@ function drawGradientBG() {
   }
 }
 
-// === Poem Layer ===
+
 function drawPoemLayer() {
   poemLayer.clear();
 
